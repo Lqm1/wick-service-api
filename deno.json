@@ -2,11 +2,10 @@
   "name": "@lami/wick-service-api",
   "version": "0.0.1",
   "description": "Unofficial Wick Service API client library for Deno/TypeScript with authentication, user management, and SNS features",
+  "license": "GPL-3.0",
   "exports": "./src/main.ts",
-  "tasks": {
-    "dev": "deno run --watch main.ts"
-  },
   "imports": {
+    "@deno/dnt": "jsr:@deno/dnt@^0.42.3",
     "@std/assert": "jsr:@std/assert@1",
     "ky": "npm:ky@^1.14.1",
     "tough-cookie": "npm:tough-cookie@^6.0.0",

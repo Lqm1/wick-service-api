@@ -72,6 +72,7 @@ export class WickServiceBase {
       const runtime = detectRuntime();
       switch (runtime) {
         case "deno": {
+          // @ts-ignore - createHttpClient is only available in Deno runtime
           const client = Deno.createHttpClient({
             proxy: {
               url: proxyUrl,
