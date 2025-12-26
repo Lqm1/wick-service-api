@@ -17,8 +17,10 @@ Wick Service の非公式 API クライアントライブラリ（Deno/TypeScrip
 
 ## インストール
 
+### JSR (Deno/Node.js)
+
 ```typescript
-import { WickService } from "jsr:@your-scope/wick-service-api";
+import { WickService } from "jsr:@lami/wick-service-api";
 ```
 
 または、`deno.json` に追加：
@@ -26,9 +28,19 @@ import { WickService } from "jsr:@your-scope/wick-service-api";
 ```json
 {
   "imports": {
-    "wick-service-api": "jsr:@your-scope/wick-service-api"
+    "wick-service-api": "jsr:@lami/wick-service-api"
   }
 }
+```
+
+### NPM (Node.js/Bun)
+
+```bash
+npm install wick-service-api
+```
+
+```typescript
+import { WickService } from "wick-service-api";
 ```
 
 ## 使い方
