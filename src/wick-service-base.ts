@@ -6,8 +6,19 @@ import { PROD_API_WICK_SERVICE_URL } from "./constants.ts";
 import { detectRuntime } from "./utils.ts";
 import { WickServiceError } from "./errors.ts";
 
+/**
+ * Base class for Wick Service API clients
+ * Handles HTTP client configuration, cookie management, and proxy support
+ */
 export class WickServiceBase {
+  /**
+   * Cookie jar for managing session cookies
+   */
   protected cookieJar: CookieJar = new CookieJar();
+
+  /**
+   * HTTP client instance with preconfigured hooks and headers
+   */
   protected instance: KyInstance = ky.create({
     prefixUrl: PROD_API_WICK_SERVICE_URL.toString(),
     headers: {

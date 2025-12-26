@@ -29,6 +29,10 @@ import type {
 } from "./types.ts";
 import { PROD_API_WICK_SERVICE_URL } from "./constants.ts";
 
+/**
+ * User management API methods for Wick Service
+ * Handles user profiles, follows, searches, and preferences
+ */
 export class WickServiceUser {
   constructor(private readonly instance: WickServiceBase["instance"]) {
     const userUrl = new URL("/user", PROD_API_WICK_SERVICE_URL);
@@ -37,14 +41,27 @@ export class WickServiceUser {
     });
   }
 
+  /**
+   * Get API version information
+   * @returns Version information for iOS and Android apps
+   */
   versions(): Promise<VersionsResponse> {
     return this.instance.get("versions").json();
   }
 
+  /**
+   * Get unread notification tabs
+   * @returns Unread count for each notification tab
+   */
   unreadTabs(): Promise<UnreadTabsResponse> {
     return this.instance.get("notifications/unread-tabs").json();
   }
 
+  /**
+   * Get campaign prizes information
+   * @param request - Pagination parameters
+   * @returns Campaign prizes data
+   */
   campaignPrizes(
     request: CampaignPrizesRequest,
   ): Promise<CampaignPrizesResponse> {

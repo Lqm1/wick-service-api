@@ -17,6 +17,10 @@ import type {
 } from "./types.ts";
 import { PROD_API_WICK_SERVICE_URL } from "./constants.ts";
 
+/**
+ * SNS (Social Network Service) API methods for Wick Service
+ * Handles posts, favorites, searches, and trending content
+ */
 export class WickServiceSNS {
   constructor(private readonly instance: WickServiceBase["instance"]) {
     const snsUrl = new URL("/sns", PROD_API_WICK_SERVICE_URL);
@@ -25,6 +29,11 @@ export class WickServiceSNS {
     });
   }
 
+  /**
+   * Create a new post with optional images and videos
+   * @param request - Post content and metadata
+   * @returns Created post information
+   */
   createPost(request: CreatePostRequest): Promise<CreatePostResponse> {
     const formData = new FormData();
 
@@ -60,12 +69,22 @@ export class WickServiceSNS {
     }).json();
   }
 
+  /**
+   * Add or remove a favorite (like) on a post
+   * @param request - User ID and post ID
+   * @returns Favorite status
+   */
   favorite(request: FavoriteRequest): Promise<FavoriteResponse> {
     return this.instance.post("favorite", {
       json: request,
     }).json();
   }
 
+  /**
+   * Get trending posts
+   * @param request - Trend type, limit, and pagination cursor
+   * @returns List of trending posts
+   */
   trendPosts(request: TrendPostsRequest): Promise<TrendPostsResponse> {
     const searchParams = new URLSearchParams();
     searchParams.append("trend", request.trend);
@@ -79,6 +98,11 @@ export class WickServiceSNS {
     }).json();
   }
 
+  /**
+   * Get posts from user's timeline
+   * @param request - User ID, type, and optional filters
+   * @returns List of posts
+   */
   getPosts(request: GetPostsRequest): Promise<GetPostsResponse> {
     const searchParams = new URLSearchParams();
     searchParams.append("userId", request.userId);

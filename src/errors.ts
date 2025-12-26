@@ -1,5 +1,9 @@
-import { HTTPError, NormalizedOptions } from "ky";
+import { HTTPError, type NormalizedOptions } from "ky";
 
+/**
+ * Custom error class for Wick Service API errors
+ * Extends HTTPError with a custom error message from the API response
+ */
 export class WickServiceError extends HTTPError {
   constructor(
     response: Response,

@@ -1,3 +1,6 @@
+/**
+ * User information from Wick Service
+ */
 export interface User {
   id: string;
   username: string;
@@ -38,6 +41,10 @@ export interface User {
   deletedAt: string | null;
 }
 
+/**
+ * Response from guest sign-up request
+ * Contains access token, refresh token, and user information
+ */
 export interface GuestSignUpResponse {
   cursor: string;
   data: {
@@ -50,12 +57,19 @@ export interface GuestSignUpResponse {
   offset: number;
 }
 
+/**
+ * Request parameters for guest sign-in
+ */
 export interface GuestSignInRequest {
   guestSecret: string;
   screenWidth: number;
   deviceId: string | null;
 }
 
+/**
+ * Response from guest sign-in request
+ * Contains access token, refresh token, and user information
+ */
 export interface GuestSignInResponse {
   cursor: string;
   data: {
@@ -68,6 +82,9 @@ export interface GuestSignInResponse {
   offset: number;
 }
 
+/**
+ * Response indicating if terms of service or privacy policy were updated
+ */
 export interface CheckTermsResponse {
   cursor: string;
   data: {
@@ -79,16 +96,25 @@ export interface CheckTermsResponse {
   offset: number;
 }
 
+/**
+ * Request to check if terms have been updated for a user
+ */
 export interface CheckTermsRequest {
   userId: string;
 }
 
+/**
+ * Semantic version information
+ */
 export interface VersionInfo {
   major: number;
   minor: number;
   patch: number;
 }
 
+/**
+ * API version information for iOS and Android apps
+ */
 export interface VersionsResponse {
   cursor: string;
   data: {
@@ -112,6 +138,9 @@ export interface VersionsResponse {
   offset: number;
 }
 
+/**
+ * Unread notification counts for each notification type
+ */
 export interface UnreadTabsResponse {
   cursor: string;
   data: {
@@ -129,6 +158,9 @@ export interface UnreadTabsResponse {
   offset: number;
 }
 
+/**
+ * Campaign information
+ */
 export interface Campaign {
   campaignId: string;
   description: string;
@@ -140,6 +172,9 @@ export interface Campaign {
   type: string;
 }
 
+/**
+ * Response containing campaign prizes information
+ */
 export interface CampaignPrizesResponse {
   cursor: string;
   data: {
@@ -152,10 +187,16 @@ export interface CampaignPrizesResponse {
   offset: number;
 }
 
+/**
+ * Request parameters for campaign prizes
+ */
 export interface CampaignPrizesRequest {
   offset: number;
 }
 
+/**
+ * Response indicating if password is required
+ */
 export interface IsPasswordResponse {
   cursor: string;
   data: {
@@ -166,12 +207,18 @@ export interface IsPasswordResponse {
   offset: number;
 }
 
+/**
+ * Request to update device tokens for push notifications
+ */
 export interface TokenRequest {
   userId: string;
   ios_token: string | null;
   android_token: string | null;
 }
 
+/**
+ * Response from token update request
+ */
 export interface TokenResponse {
   cursor: string;
   data: {
@@ -182,6 +229,9 @@ export interface TokenResponse {
   offset: number;
 }
 
+/**
+ * Response containing ad wall URL
+ */
 export interface AdWallResponse {
   cursor: string;
   data: {
@@ -192,6 +242,9 @@ export interface AdWallResponse {
   offset: number;
 }
 
+/**
+ * Event campaign details
+ */
 export interface EventCampaign {
   campaignId: string;
   description: string;
@@ -201,6 +254,9 @@ export interface EventCampaign {
   startsAt: string;
 }
 
+/**
+ * Response containing event campaign information and user's participation status
+ */
 export interface EventCampaignResponse {
   cursor: string;
   data: {
@@ -216,6 +272,9 @@ export interface EventCampaignResponse {
   offset: number;
 }
 
+/**
+ * Daily lottery status information
+ */
 export interface DailyLotteryStatusResponse {
   cursor: string;
   data: {
@@ -228,6 +287,9 @@ export interface DailyLotteryStatusResponse {
   offset: number;
 }
 
+/**
+ * Response from getting user action information
+ */
 export interface UserActionGetResponse {
   cursor: string;
   data: {
@@ -238,12 +300,18 @@ export interface UserActionGetResponse {
   offset: number;
 }
 
+/**
+ * Request to record user action
+ */
 export interface UserActionRequest {
   actionType: string;
   option1: string;
   option2: string;
 }
 
+/**
+ * Response from posting user action
+ */
 export interface UserActionPostResponse {
   cursor: string;
   data: {
@@ -254,17 +322,26 @@ export interface UserActionPostResponse {
   offset: number;
 }
 
+/**
+ * User occupation information
+ */
 export interface UserOccupation {
   id: string;
   name: string;
   userCount: number;
 }
 
+/**
+ * Request parameters for user occupation list
+ */
 export interface UserOccupationListRequest {
   excludeEmpty: boolean;
   sortByCount: boolean;
 }
 
+/**
+ * Response containing list of user occupations
+ */
 export interface UserOccupationListResponse {
   cursor: string;
   data: UserOccupation[];
@@ -273,6 +350,9 @@ export interface UserOccupationListResponse {
   offset: number;
 }
 
+/**
+ * Request to update user profile information
+ */
 export interface UpdateUserRequest {
   birthdate?: string;
   nickname?: string;
@@ -284,6 +364,9 @@ export interface UpdateUserRequest {
   headerImage?: Blob | File;
 }
 
+/**
+ * Response containing updated user information
+ */
 export interface UpdateUserResponse {
   cursor: string;
   data: {
@@ -319,11 +402,17 @@ export interface UpdateUserResponse {
   offset: number;
 }
 
+/**
+ * Request to update user preferences (gender and genres)
+ */
 export interface UpdatePreferencesRequest {
   gender: string;
   genres: string[];
 }
 
+/**
+ * Response from updating user preferences
+ */
 export interface UpdatePreferencesResponse {
   cursor: string;
   data: {
@@ -334,6 +423,9 @@ export interface UpdatePreferencesResponse {
   offset: number;
 }
 
+/**
+ * External SNS account information
+ */
 export interface ExternalSns {
   followerCount: number;
   isShown: boolean;
@@ -342,6 +434,9 @@ export interface ExternalSns {
   snsUserId: string;
 }
 
+/**
+ * Detailed user profile information
+ */
 export interface UserDetailResponse {
   cursor: string;
   data: {
@@ -393,11 +488,17 @@ export interface UserDetailResponse {
   offset: number;
 }
 
+/**
+ * Request to follow or unfollow a user
+ */
 export interface FollowRequest {
   followingUserId: string;
   followedUserId: string;
 }
 
+/**
+ * Response from follow/unfollow request
+ */
 export interface FollowResponse {
   cursor: string;
   data: {
@@ -408,6 +509,9 @@ export interface FollowResponse {
   offset: number;
 }
 
+/**
+ * User information in search results
+ */
 export interface SearchUser {
   biography: string;
   id: string;
@@ -425,6 +529,9 @@ export interface SearchUser {
   username: string;
 }
 
+/**
+ * Request to search for users
+ */
 export interface SearchUsersRequest {
   keyword: string;
   userId: string;
@@ -432,6 +539,9 @@ export interface SearchUsersRequest {
   occupationId?: string;
 }
 
+/**
+ * Response containing search results for users
+ */
 export interface SearchUsersResponse {
   cursor: string;
   data: SearchUser[];
@@ -442,10 +552,16 @@ export interface SearchUsersResponse {
   totalCount: number;
 }
 
+/**
+ * Request to mark notifications as read
+ */
 export interface MarkNotificationsReadRequest {
   type: string;
 }
 
+/**
+ * Response from marking notifications as read
+ */
 export interface MarkNotificationsReadResponse {
   cursor: string;
   data: {
@@ -456,6 +572,9 @@ export interface MarkNotificationsReadResponse {
   offset: number;
 }
 
+/**
+ * Basic user information in a post
+ */
 export interface PostUser {
   id: string;
   isFollow: boolean;
@@ -466,6 +585,9 @@ export interface PostUser {
   username: string;
 }
 
+/**
+ * Request to create a new post
+ */
 export interface CreatePostRequest {
   body?: string;
   userId: string;
@@ -479,6 +601,9 @@ export interface CreatePostRequest {
   videos?: (Blob | File)[];
 }
 
+/**
+ * Response containing created post information
+ */
 export interface CreatePostResponse {
   cursor: string;
   data: {
@@ -509,12 +634,18 @@ export interface CreatePostResponse {
   offset: number;
 }
 
+/**
+ * Request to favorite (like) a post
+ */
 export interface FavoriteRequest {
   userId: string;
   postId: string;
   favPoint: number;
 }
 
+/**
+ * Response from favoriting a post
+ */
 export interface FavoriteResponse {
   cursor: string;
   data: {
@@ -525,17 +656,26 @@ export interface FavoriteResponse {
   offset: number;
 }
 
+/**
+ * Image information with dimensions and URL
+ */
 export interface ImageInfo {
   height: number;
   imageUrl: string;
   width: number;
 }
 
+/**
+ * Hashtag information
+ */
 export interface Hashtag {
   id: string;
   tagName: string;
 }
 
+/**
+ * Detailed user information in a post
+ */
 export interface PostUserDetail {
   id: string;
   isMarketplaceAllowed: boolean;
@@ -550,6 +690,9 @@ export interface PostUserDetail {
   username: string;
 }
 
+/**
+ * Post information with all details
+ */
 export interface Post {
   body: string;
   contents: string;
@@ -587,6 +730,9 @@ export interface Post {
   videoUrl: unknown[] | null;
 }
 
+/**
+ * Request to get posts from timeline
+ */
 export interface GetPostsRequest {
   userId: string;
   type: string;
@@ -595,6 +741,9 @@ export interface GetPostsRequest {
   highFollowerCursor?: string;
 }
 
+/**
+ * Response containing list of posts
+ */
 export interface GetPostsResponse {
   data: Post[];
   followPostCursor: string | null;
@@ -604,11 +753,17 @@ export interface GetPostsResponse {
   totalCount: number;
 }
 
+/**
+ * Request to get detailed post information
+ */
 export interface GetPostDetailRequest {
   userId: string;
   postId: string;
 }
 
+/**
+ * Response containing detailed post information
+ */
 export interface GetPostDetailResponse {
   cursor: string;
   data: Post;
@@ -617,6 +772,9 @@ export interface GetPostDetailResponse {
   offset: number;
 }
 
+/**
+ * Request to get posts from a specific user
+ */
 export interface GetUserPostsRequest {
   userId: string;
   cursor?: string;
@@ -625,6 +783,9 @@ export interface GetUserPostsRequest {
   memoryId?: string;
 }
 
+/**
+ * Response containing user's posts
+ */
 export interface GetUserPostsResponse {
   cursor: string;
   data: Post[];
@@ -634,6 +795,9 @@ export interface GetUserPostsResponse {
   offset: number;
 }
 
+/**
+ * Request to search posts by keyword
+ */
 export interface SearchRequest {
   userId: string;
   offset: number;
@@ -641,6 +805,9 @@ export interface SearchRequest {
   type: "post" | "image";
 }
 
+/**
+ * Response containing search results
+ */
 export interface SearchResponse {
   cursor: string;
   data: Post[];
@@ -651,12 +818,18 @@ export interface SearchResponse {
   totalCount: number;
 }
 
+/**
+ * Request to get trending posts
+ */
 export interface TrendPostsRequest {
   trend: string;
   limit: number;
   cursor?: string;
 }
 
+/**
+ * Response containing trending posts
+ */
 export interface TrendPostsResponse {
   cursor: string;
   data: Post[];
@@ -667,6 +840,9 @@ export interface TrendPostsResponse {
   totalCount: number;
 }
 
+/**
+ * Request to sign up with email and password
+ */
 export interface SignUpRequest {
   email: string;
   password: string;
@@ -674,6 +850,9 @@ export interface SignUpRequest {
   guestSecret: string;
 }
 
+/**
+ * Response from sign-up request
+ */
 export interface SignUpResponse {
   cursor: string;
   data: {
@@ -687,6 +866,9 @@ export interface SignUpResponse {
   offset: number;
 }
 
+/**
+ * Request to sign in with email and password
+ */
 export interface SignInRequest {
   email: string;
   password: string;
@@ -694,6 +876,9 @@ export interface SignInRequest {
   deviceId: string;
 }
 
+/**
+ * Response from sign-in request
+ */
 export interface SignInResponse {
   cursor: string;
   data: {
@@ -704,6 +889,9 @@ export interface SignInResponse {
   offset: number;
 }
 
+/**
+ * Request to confirm email or registration
+ */
 export interface ConfirmRequest {
   device_type: string;
   token_hash: string;
