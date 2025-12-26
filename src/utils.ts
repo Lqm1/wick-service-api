@@ -22,23 +22,3 @@ export function detectRuntime(): "node" | "deno" | "bun" | "unknown" {
 
   return "unknown";
 }
-
-export function toFormData(data: Record<string, unknown>): FormData {
-  const formData = new FormData();
-
-  Object.entries(data).forEach(([key, value]) => {
-    if (value !== undefined && value !== null) {
-      if (typeof value === "boolean") {
-        formData.append(key, String(value));
-      } else if (value instanceof Blob || value instanceof File) {
-        formData.append(key, value);
-      } else if (typeof value === "string" || typeof value === "number") {
-        formData.append(key, String(value));
-      } else {
-        formData.append(key, JSON.stringify(value));
-      }
-    }
-  });
-
-  return formData;
-}

@@ -456,6 +456,217 @@ export interface MarkNotificationsReadResponse {
   offset: number;
 }
 
+export interface PostUser {
+  id: string;
+  isFollow: boolean;
+  isOfficial: boolean;
+  isPrivate: boolean;
+  nickname: string;
+  profileImageUrl: string | null;
+  username: string;
+}
+
+export interface CreatePostRequest {
+  body?: string;
+  userId: string;
+  replyToPostId?: string;
+  repostToPostId?: string;
+  hasPostMemory: boolean;
+  isUseAI: boolean;
+  isSensitive: boolean;
+  needMonetization: boolean;
+  images?: (Blob | File)[];
+  videos?: (Blob | File)[];
+}
+
+export interface CreatePostResponse {
+  cursor: string;
+  data: {
+    body: string;
+    contents: string;
+    createdAt: string;
+    hasPostMemory: boolean;
+    hashtagList: unknown | null;
+    id: string;
+    imageUrls: string[];
+    isRepost: boolean;
+    isSensitive: boolean;
+    isSuperReply: boolean;
+    isUseAI: boolean;
+    memoryList: unknown[];
+    mentionList: unknown | null;
+    needMonetization: boolean;
+    postUser: PostUser;
+    replyPoint: number;
+    replyToPostId: string | null;
+    repost: unknown | null;
+    repostCount: number;
+    repostId: string | null;
+    videoUrl: string[];
+  };
+  hasNext: boolean;
+  message: string;
+  offset: number;
+}
+
+export interface FavoriteRequest {
+  userId: string;
+  postId: string;
+  favPoint: number;
+}
+
+export interface FavoriteResponse {
+  cursor: string;
+  data: {
+    sendFavoriteCount: number;
+  };
+  hasNext: boolean;
+  message: string;
+  offset: number;
+}
+
+export interface ImageInfo {
+  height: number;
+  imageUrl: string;
+  width: number;
+}
+
+export interface Hashtag {
+  id: string;
+  tagName: string;
+}
+
+export interface PostUserDetail {
+  id: string;
+  isMarketplaceAllowed: boolean;
+  isOfficial: boolean;
+  isPrivate: boolean;
+  nickname: string;
+  occupation: {
+    id: string;
+    name: string;
+  } | null;
+  profileImageUrl: string | null;
+  username: string;
+}
+
+export interface Post {
+  body: string;
+  contents: string;
+  createdAt: string;
+  favoriteCount: number;
+  hasPostMemory: boolean;
+  hashtagList: Hashtag[];
+  id: string;
+  imageUrls: ImageInfo[] | null;
+  isDeleted: boolean;
+  isFavorite: boolean;
+  isMarketplaceAllowed?: boolean;
+  isPinned: boolean;
+  isReceived: boolean;
+  isRepost: boolean;
+  isSensitive: boolean;
+  isSuperFavorite: boolean;
+  isUseAI: boolean;
+  link?: string | null;
+  memoryList: unknown[];
+  mentionList: unknown[];
+  needMonetization: boolean;
+  postUser: PostUserDetail;
+  replyCount: number;
+  replyPoint: number;
+  replyToPostId: string | null;
+  repost: Post | null;
+  repostCount: number;
+  repostId?: string | null;
+  repostToPostId: string | null;
+  sendFavoriteCount: number;
+  superReplyCount: number;
+  updatedAt?: string;
+  url: string | null;
+  videoUrl: unknown[] | null;
+}
+
+export interface GetPostsRequest {
+  userId: string;
+  type: string;
+  keyword?: string;
+  followPostCursor?: string;
+  highFollowerCursor?: string;
+}
+
+export interface GetPostsResponse {
+  data: Post[];
+  followPostCursor: string | null;
+  hasNext: boolean;
+  highFollowerCursor: string | null;
+  limit: number;
+  totalCount: number;
+}
+
+export interface GetPostDetailRequest {
+  userId: string;
+  postId: string;
+}
+
+export interface GetPostDetailResponse {
+  cursor: string;
+  data: Post;
+  hasNext: boolean;
+  message: string;
+  offset: number;
+}
+
+export interface GetUserPostsRequest {
+  userId: string;
+  cursor?: string;
+  limit: number;
+  type: string;
+  memoryId?: string;
+}
+
+export interface GetUserPostsResponse {
+  cursor: string;
+  data: Post[];
+  hasNext: boolean;
+  limit: number;
+  message: string;
+  offset: number;
+}
+
+export interface SearchRequest {
+  userId: string;
+  offset: number;
+  keyword: string;
+  type: "post" | "image";
+}
+
+export interface SearchResponse {
+  cursor: string;
+  data: Post[];
+  hasNext: boolean;
+  limit: number;
+  message: string;
+  offset: number;
+  totalCount: number;
+}
+
+export interface TrendPostsRequest {
+  trend: string;
+  limit: number;
+  cursor?: string;
+}
+
+export interface TrendPostsResponse {
+  cursor: string;
+  data: Post[];
+  hasNext: boolean;
+  limit: number;
+  message: string;
+  offset: number;
+  totalCount: number;
+}
+
 export interface SignUpRequest {
   email: string;
   password: string;

@@ -28,7 +28,6 @@ import type {
   VersionsResponse,
 } from "./types.ts";
 import { PROD_API_WICK_SERVICE_URL } from "./constants.ts";
-import { toFormData } from "./utils.ts";
 
 export class WickServiceUser {
   constructor(private readonly instance: WickServiceBase["instance"]) {
@@ -49,8 +48,11 @@ export class WickServiceUser {
   campaignPrizes(
     request: CampaignPrizesRequest,
   ): Promise<CampaignPrizesResponse> {
+    const searchParams = new URLSearchParams();
+    searchParams.append("offset", String(request.offset));
+
     return this.instance.get("campaign-prizes", {
-      searchParams: request as unknown as Record<string, string>,
+      searchParams,
     }).json();
   }
 
@@ -89,8 +91,12 @@ export class WickServiceUser {
   userOccupationList(
     request: UserOccupationListRequest,
   ): Promise<UserOccupationListResponse> {
+    const searchParams = new URLSearchParams();
+    searchParams.append("excludeEmpty", String(request.excludeEmpty));
+    searchParams.append("sortByCount", String(request.sortByCount));
+
     return this.instance.get("UserOccupationList", {
-      searchParams: request as unknown as Record<string, string>,
+      searchParams,
     }).json();
   }
 
@@ -98,7 +104,32 @@ export class WickServiceUser {
     userId: string,
     request: UpdateUserRequest,
   ): Promise<UpdateUserResponse> {
-    const formData = toFormData(request as Record<string, unknown>);
+    const formData = new FormData();
+
+    if (request.birthdate !== undefined) {
+      formData.append("birthdate", request.birthdate);
+    }
+    if (request.nickname !== undefined) {
+      formData.append("nickname", request.nickname);
+    }
+    if (request.username !== undefined) {
+      formData.append("username", request.username);
+    }
+    if (request.biography !== undefined) {
+      formData.append("biography", request.biography);
+    }
+    if (request.isPrivate !== undefined) {
+      formData.append("isPrivate", String(request.isPrivate));
+    }
+    if (request.awardId !== undefined) {
+      formData.append("awardId", request.awardId);
+    }
+    if (request.profileImage) {
+      formData.append("profileImage", request.profileImage);
+    }
+    if (request.headerImage) {
+      formData.append("headerImage", request.headerImage);
+    }
 
     return this.instance.post(userId, {
       body: formData,
@@ -128,8 +159,16 @@ export class WickServiceUser {
     userId: string,
     request: SearchUsersRequest,
   ): Promise<SearchUsersResponse> {
+    const searchParams = new URLSearchParams();
+    searchParams.append("keyword", request.keyword);
+    searchParams.append("userId", request.userId);
+    searchParams.append("offset", String(request.offset));
+    if (request.occupationId !== undefined) {
+      searchParams.append("occupationId", request.occupationId);
+    }
+
     return this.instance.get(`${userId}/search`, {
-      searchParams: request as unknown as Record<string, string>,
+      searchParams,
     }).json();
   }
 
