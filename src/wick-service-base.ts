@@ -1,4 +1,5 @@
 import ky from "ky";
+import type { KyInstance } from "ky";
 import { ProxyAgent } from "undici";
 import { Cookie, CookieJar } from "tough-cookie";
 import { PROD_API_WICK_SERVICE_URL } from "./constants.ts";
@@ -6,8 +7,8 @@ import { detectRuntime } from "./utils.ts";
 import { WickServiceError } from "./errors.ts";
 
 export class WickServiceBase {
-  protected cookieJar = new CookieJar();
-  protected instance = ky.create({
+  protected cookieJar: CookieJar = new CookieJar();
+  protected instance: KyInstance = ky.create({
     prefixUrl: PROD_API_WICK_SERVICE_URL.toString(),
     headers: {
       "user-agent": "Dart/3.9 (dart:io)",

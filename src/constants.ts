@@ -1,9 +1,9 @@
-export const PROD_API_WICK_SERVICE_URL = new URL(
+export const PROD_API_WICK_SERVICE_URL: URL = new URL(
   "https://prod.api.wick-service.com",
 );
-export const PRE_PROD_API_WICK_SERVICE_URL = new URL(
+export const PRE_PROD_API_WICK_SERVICE_URL: URL = new URL(
   "https://pre-prod.api.wick-service.com",
 );
-export const STG_API_WICK_SERVICE_URL = new URL(
+export const STG_API_WICK_SERVICE_URL: URL = new URL(
   "https://stg.api.wick-service.com",
 );
