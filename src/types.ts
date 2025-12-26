@@ -276,7 +276,7 @@ export interface UserOccupationListResponse {
 export interface UpdateUserRequest {
   birthdate?: string;
   nickname?: string;
-  username?: string;
+  username: string;
   biography?: string;
   isPrivate?: boolean;
   awardId?: string;

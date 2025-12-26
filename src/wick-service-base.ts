@@ -11,7 +11,6 @@ export class WickServiceBase {
     prefixUrl: PROD_API_WICK_SERVICE_URL.toString(),
     headers: {
       "user-agent": "Dart/3.9 (dart:io)",
-      "content-type": "application/json; charset=UTF-8",
     },
     hooks: {
       beforeRequest: [
@@ -94,5 +93,27 @@ export class WickServiceBase {
         }
       }
     }
+  }
+
+  getSession(): string | null {
+    const cookies = this.cookieJar.getCookiesSync(
+      PROD_API_WICK_SERVICE_URL.toString(),
+    );
+    const sessionCookie = cookies.find((cookie) =>
+      cookie.key === "wick_session"
+    );
+    return sessionCookie ? sessionCookie.value : null;
+  }
+
+  setSession(value: string) {
+    const cookies = new Cookie({
+      key: "wick_session",
+      value,
+      domain: PROD_API_WICK_SERVICE_URL.hostname,
+    });
+    this.cookieJar.setCookie(
+      cookies,
+      PROD_API_WICK_SERVICE_URL.toString(),
+    );
   }
 }
