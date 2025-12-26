@@ -1,6 +1,6 @@
 {
   "name": "@lami/wick-service-api",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Unofficial Wick Service API client library for Deno/TypeScript with authentication, user management, and SNS features",
   "license": "GPL-3.0",
   "exports": "./src/main.ts",
