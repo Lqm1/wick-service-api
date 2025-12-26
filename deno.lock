@@ -4,6 +4,7 @@
     "jsr:@std/assert@1": "1.0.16",
     "jsr:@std/internal@^1.0.12": "1.0.12",
     "npm:ky@^1.14.1": "1.14.1",
+    "npm:tough-cookie@6": "6.0.0",
     "npm:undici@^7.16.0": "7.16.0"
   },
   "jsr": {
@@ -21,6 +22,22 @@
     "ky@1.14.1": {
       "integrity": "sha512-hYje4L9JCmpEQBtudo+v52X5X8tgWXUYyPcxKSuxQNboqufecl9VMWjGiucAFH060AwPXHZuH+WB2rrqfkmafw=="
     },
+    "tldts-core@7.0.19": {
+      "integrity": "sha512-lJX2dEWx0SGH4O6p+7FPwYmJ/bu1JbcGJ8RLaG9b7liIgZ85itUVEPbMtWRVrde/0fnDPEPHW10ZsKW3kVsE9A=="
+    },
+    "tldts@7.0.19": {
+      "integrity": "sha512-8PWx8tvC4jDB39BQw1m4x8y5MH1BcQ5xHeL2n7UVFulMPH/3Q0uiamahFJ3lXA0zO2SUyRXuVVbWSDmstlt9YA==",
+      "dependencies": [
+        "tldts-core"
+      ],
+      "bin": true
+    },
+    "tough-cookie@6.0.0": {
+      "integrity": "sha512-kXuRi1mtaKMrsLUxz3sQYvVl37B0Ns6MzfrtV5DvJceE9bPyspOqk9xxv7XbZWcfLWbFmm997vl83qUWVJA64w==",
+      "dependencies": [
+        "tldts"
+      ]
+    },
     "undici@7.16.0": {
       "integrity": "sha512-QEg3HPMll0o3t2ourKwOeUAZ159Kn9mx5pnzHRQO8+Wixmh88YdZRiIwat0iNzNNXn0yoEtXJqFpyW7eM8BV7g=="
     }
@@ -29,6 +46,7 @@
     "dependencies": [
       "jsr:@std/assert@1",
       "npm:ky@^1.14.1",
+      "npm:tough-cookie@6",
       "npm:undici@^7.16.0"
     ]
   }
