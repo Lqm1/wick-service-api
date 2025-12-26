@@ -4,6 +4,7 @@
   },
   "imports": {
     "@std/assert": "jsr:@std/assert@1",
-    "ky": "npm:ky@^1.14.1"
+    "ky": "npm:ky@^1.14.1",
+    "undici": "npm:undici@^7.16.0"
   }
 }
